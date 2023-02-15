@@ -18,26 +18,55 @@ describe('Restaurant and Menu Models', () => {
 
     test('can create a Restaurant', async () => {
         // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+
+        const restaurant = await Restaurant.create({
+            name: 'Sunshine Curry',
+            location: 'Northampton',
+            cuisine: 'Jamacian',
+        });
+        expect(restaurant.name).toEqual('Sunshine Curry');
+        expect(restaurant.location).toEqual('Northampton');
+        expect(restaurant.cuisine).toEqual('Jamacian');
     });
 
     test('can create a Menu', async () => {
+
         // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const menu = await Menu.create({
+            title: 'Lunch',
+        });
+        expect(menu.title).toEqual('Lunch');
     });
 
     test('can find Restaurants', async () => {
+
         // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const restaurant = await Restaurant.findAll();
+
+        expect(restaurant.length).toEqual(1);
+        expect(restaurant[0].name).toEqual('Sunshine Curry');
+        expect(restaurant[0].location).toEqual('Northampton');
+        expect(restaurant[0].cuisine).toEqual('Jamacian');
+
     });
 
     test('can find Menus', async () => {
         // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const menu = await Menu.findAll({
+            where: {
+                title: 'Lunch',
+            },
+        })
+      
     });
-
     test('can delete Restaurants', async () => {
-        // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+
+        const restaurant = await Restaurant.destroy({
+            where: {
+                name: 'Sunshine Curry',
+            },
+        });
+
+      
     });
 })
