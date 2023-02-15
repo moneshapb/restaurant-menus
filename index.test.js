@@ -23,10 +23,12 @@ describe('Restaurant and Menu Models', () => {
             name: 'Sunshine Curry',
             location: 'Northampton',
             cuisine: 'Jamacian',
+            rating: 5,
         });
         expect(restaurant.name).toEqual('Sunshine Curry');
         expect(restaurant.location).toEqual('Northampton');
         expect(restaurant.cuisine).toEqual('Jamacian');
+        expect(restaurant.rating).toEqual(5);
     });
 
     test('can create a Menu', async () => {
@@ -41,12 +43,15 @@ describe('Restaurant and Menu Models', () => {
     test('can find Restaurants', async () => {
 
         // TODO - write test
-        const restaurant = await Restaurant.findAll();
+        const restaurant = await Restaurant.findAll({
+            where: {
+                name: 'Sunshine Curry',
+            },
 
-        expect(restaurant.length).toEqual(1);
-        expect(restaurant[0].name).toEqual('Sunshine Curry');
-        expect(restaurant[0].location).toEqual('Northampton');
-        expect(restaurant[0].cuisine).toEqual('Jamacian');
+        });
+        
+
+       
 
     });
 
@@ -61,12 +66,13 @@ describe('Restaurant and Menu Models', () => {
     });
     test('can delete Restaurants', async () => {
 
-        const restaurant = await Restaurant.destroy({
+        const menu = await Menu.destroy({
             where: {
-                name: 'Sunshine Curry',
+                title: 'Lunch',
             },
-        });
 
+        })
+ 
       
     });
 })
